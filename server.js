@@ -20,10 +20,10 @@ var connection = mysql.createConnection({
   port: 3306,
   user: "root",
   password: "Mapleb0x",
-  database: "movie_planner_db"
+  database: "movie_planner_db",
 });
 
-connection.connect(function(err) {
+connection.connect(function (err) {
   if (err) {
     console.error("error connecting: " + err.stack);
     return;
@@ -32,14 +32,12 @@ connection.connect(function(err) {
   console.log("connected as id " + connection.threadId);
 });
 
-
 // VIEW ROUTE
-app.get('/', (req, res) => {
-    connection.query('SELECT * FROM movies', (err, data) => {
-        res.render('index', { movies: data })
-    })
-})
-
+app.get("/", (req, res) => {
+  connection.query("SELECT * FROM movies", (err, data) => {
+    res.render("index", { movies: data });
+  });
+});
 
 // API ROUTES
 // GET
@@ -47,6 +45,6 @@ app.get('/', (req, res) => {
 // PUT
 // DELETE
 
-
-
-app.listen(PORT, () => console.log(`Server lsitening at http://localhost:${PORT}`))
+app.listen(PORT, () =>
+  console.log(`Server lsitening at http://localhost:${PORT}`)
+);
