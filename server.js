@@ -1,3 +1,4 @@
+  
 var express = require("express");
 var exphbs = require("express-handlebars");
 var mysql = require("mysql");
@@ -40,7 +41,6 @@ app.get('/', (req, res) => {
 })
 
 // API ROUTES
-// GET
 
 // POST
 app.post('/api/movies', (req, res) => {
@@ -54,6 +54,14 @@ app.post('/api/movies', (req, res) => {
 })
 
 // PUT
+app.put('/api/movies/:id', (req, res) => {
+  const id = req.params.id
+  const updatedMovieText = req.body.updatedMovieText
+  connection.query('UPDATE movies SET movie = ? WHERE id = ?', [updatedMovieText, id], (err, result) => {
+    if(err) throw err
+    res.status(200).send()
+  })
+})
 
 // DELETE
 app.delete('/api/movies/:id', (req, res) => {
