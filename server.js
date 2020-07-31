@@ -33,6 +33,20 @@ connection.connect(function(err) {
 });
 
 
-// ROUTES GO HERE
+// VIEW ROUTE
+app.get('/', (req, res) => {
+    connection.query('SELECT * FROM movies', (err, data) => {
+        res.render('index', { movies: data })
+    })
+})
+
+
+// API ROUTES
+// GET
+// POST
+// PUT
+// DELETE
+
+
 
 app.listen(PORT, () => console.log(`Server lsitening at http://localhost:${PORT}`))
